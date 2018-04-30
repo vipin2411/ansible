@@ -1,0 +1,29 @@
+---
+- hosts: web
+  name: This is a apache with git playbook
+  become: yes
+  vars:
+    httpd_packages:
+      - httpd
+      - mod_wsgi
+
+  tasks:
+    - name: httpd packages are present
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ httpd_packages }}"
+
+    - name: copy code from git
+      git: >
+        dest=/var/www/html/
+        repo=https://github.com/vipin2411/devops.git
+        accept_hostkey=yes
+        force=yes
+
+    - name: httpd is started and enabled
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+

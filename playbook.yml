@@ -1,0 +1,8 @@
+---
+- hosts: 127.0.0.1
+  user: root
+  vars:
+   motd: "welcome to linux Ji \n"
+  tasks:
+   - name: update the /etc/motd
+     copy: content='{{motd}}' dest='/etc/motd' force='yes'

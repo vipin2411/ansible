@@ -1,0 +1,5 @@
+---
+# defaults file for apache-simple
+apache_test_message: Hi Hello from Ansible Roles
+apache_max_keep_alive_requests: 115
+port_number: 8080
